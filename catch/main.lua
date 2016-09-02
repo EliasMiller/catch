@@ -20,27 +20,35 @@ function love.load()
 		oy = 27.5,
 		speed = 200,
 		image = love.graphics.newImage("assets/pic/mouse.png"),
+		w = 70,
+		h = 55
 	}
 	coockie = {
 		x = love.math.random(30, 330),
 		y = 40,
 		ox = 22.5,
 		oy = 22.5,
-		image = love.graphics.newImage("assets/pic/coockie.png")
+		image = love.graphics.newImage("assets/pic/coockie.png"),
+		w = 45,
+		h = 45
 	}
 	cheezie = {
 		x = love.math.random(30, 330),
 		y = 40,
 		ox = 20,
 		oy = 22.5,
-		image = love.graphics.newImage("assets/pic/cheezie.png")
+		image = love.graphics.newImage("assets/pic/cheezie.png"),
+		w = 40,
+		h = 45
 	} 
 	danger = {
 		x = love.math.random(30, 330),
 		y = 40,
 		ox = 35,
 		oy = 35,
-		image = love.graphics.newImage("assets/pic/danger.png")
+		image = love.graphics.newImage("assets/pic/danger.png"),
+		w = 70,
+		h = 70
 	}
 	heart1 = {
 		x = 400,
@@ -70,15 +78,6 @@ function love.load()
 		oy = 68.5,
 		image = love.graphics.newImage("assets/pic/gameover.png")
 	}
-
-	mouse.w = mouse.image:getWidth() - 1
-	mouse.h = mouse.image:getHeight() - 1
-	coockie.w = coockie.image:getWidth() - 1
-	coockie.h = coockie.image:getHeight() - 1
-	cheezie.w = cheezie.image:getWidth() - 1
-	cheezie.h = cheezie.image:getHeight() - 1
-	danger.w = danger.image:getWidth() - 3
-	danger.h = danger.image:getHeight() - 3
 
 end
 
