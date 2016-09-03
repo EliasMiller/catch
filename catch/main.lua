@@ -1,17 +1,17 @@
 local x, y, w, h, ox, oy, rdm, speed, image
-collision = require("coll")
-touching = 0
-counter = 0
-damage = 0
-level = 1
-speed = 30
+collision, touching, counter, damage, level, speed = require("coll"), 0, 0, 0, 1, 30
 
 function love.load()
+
+--Loading Source
+
 	bgm = love.audio.newSource("assets/sound/bgm.mp3", "stream")
 	puc = love.audio.newSource("assets/sound/pickup.wav")
 	dam = love.audio.newSource("assets/sound/damage.wav")
 	go = love.audio.newSource("assets/sound/gameover.wav")
 	font = love.graphics.newFont("assets/PressStart.ttf", 20)
+
+--Create moving object
 
 	mouse = {
 		x = 240,
@@ -47,9 +47,12 @@ function love.load()
 		ox = 35,
 		oy = 35,
 		image = love.graphics.newImage("assets/pic/danger.png"),
-		w = 70,
-		h = 70
+		w = 65,
+		h = 65
 	}
+
+--Create static object
+
 	heart1 = {
 		x = 400,
 		y = 350,
@@ -84,11 +87,13 @@ end
 function love.update(dt)
 
 	rdm = love.math.random(30, 330)
-	if coockie.x == cheezie.x then 
+
+	if coockie.x == cheezie.x then --Excludes the matching of coordinates on the x axis
 		coockie.x = rdm 
 	end
 
 	if damage ~= 3 then
+
 		love.audio.play(bgm)
 		coockie.y = coockie.y + (speed * dt)
 		cheezie.y = cheezie.y + (speed * dt)
@@ -155,6 +160,7 @@ function love.update(dt)
 				mouse.x = 500
 			end
 	  	end
+
 		if love.keyboard.isDown("right") then
 	    	mouse.x = mouse.x + (mouse.speed * dt)
 			if mouse.x - mouse.ox > 480 then
@@ -163,6 +169,7 @@ function love.update(dt)
 		end
 
 	elseif damage == 3 then
+		--Stops moving object
 		coockie.y = 0 - coockie.oy
 		cheezie.y = 0 - cheezie.oy
 		danger.y = 0 - danger.oy
@@ -170,16 +177,20 @@ function love.update(dt)
 		speed = 30
 		love.audio.stop(bgm)
 		love.timer.sleep(4)
-		damage = 0
 		heart1.y, heart2.y, heart3.y = 350, 350, 350
-		mouse.y = 290
-		gameover.y = -180
+		--Resets the value of the variable
+		damage = 0
 		counter = 0
 		level = 1
+		mouse.y = 290
+		gameover.y = -180
+
 	end
+
 end
 
 function love.draw()
+
 	love.graphics.setFont(font)
 	love.graphics.setBackgroundColor(150, 150, 255)
 	love.graphics.print("score", 10, 340)
@@ -194,4 +205,5 @@ function love.draw()
 	love.graphics.draw(heart2.image, heart2.x, heart2.y, r, sx, sy, heart2.ox, heart2.oy)
 	love.graphics.draw(heart1.image, heart1.x, heart1.y, r, sx, sy, heart1.ox, heart1.oy)
 	love.graphics.draw(gameover.image, gameover.x, gameover.y, r, sx, sy, gameover.ox, gameover.oy)
+
 end
